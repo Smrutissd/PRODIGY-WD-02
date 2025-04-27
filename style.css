@@ -1,0 +1,209 @@
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        position: relative;
+        overflow: hidden;
+        padding: 20px;
+    }
+
+    body::before {
+        content: '';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+        top: -250px;
+        left: -250px;
+        animation: floatingLight 15s infinite linear;
+    }
+
+    @keyframes floatingLight {
+        0% { transform: translate(0, 0); }
+        50% { transform: translate(100vw, 100vh); }
+        100% { transform: translate(0, 0); }
+    }
+
+    .stopwatch {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        padding: clamp(20px, 5vw, 40px);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        width: min(90vw, 450px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .stopwatch::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 80%);
+        animation: rotate 15s linear infinite;
+    }
+
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    .logo {
+        text-align: center;
+        margin-bottom: clamp(10px, 3vw, 20px);
+    }
+
+    .logo img {
+        width: clamp(40px, 8vw, 60px);
+        height: clamp(40px, 8vw, 60px);
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .display {
+        font-size: clamp(2em, 8vw, 4em);
+        text-align: center;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: clamp(15px, 4vw, 30px);
+        text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        transition: all 0.3s ease;
+    }
+
+    .display:hover {
+        transform: scale(1.02);
+    }
+
+    .controls {
+        display: flex;
+        justify-content: center;
+        gap: clamp(10px, 2vw, 20px);
+        margin-bottom: clamp(15px, 4vw, 30px);
+        flex-wrap: wrap;
+    }
+
+    button {
+        padding: clamp(10px, 2vw, 15px) clamp(20px, 4vw, 30px);
+        font-size: clamp(0.9em, 3vw, 1.1em);
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+        );
+        transition: 0.5s;
+    }
+
+    button:hover::before {
+        left: 100%;
+    }
+
+    button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    button:active {
+        transform: translateY(1px);
+    }
+
+    .laps {
+        max-height: clamp(150px, 30vh, 200px);
+        overflow-y: auto;
+        padding: clamp(8px, 2vw, 10px);
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .laps::-webkit-scrollbar {
+        width: clamp(4px, 1vw, 8px);
+    }
+
+    .laps::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+    }
+
+    .laps::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+    }
+
+    .lap-time {
+        padding: clamp(8px, 2vw, 12px);
+        margin: clamp(6px, 1.5vw, 8px) 0;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        font-size: clamp(0.9em, 2.5vw, 1.1em);
+        color: #ffffff;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .lap-time:hover {
+        transform: scale(1.02);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    @media (max-width: 480px) {
+        .controls {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        button {
+            width: 100%;
+        }
+    }
